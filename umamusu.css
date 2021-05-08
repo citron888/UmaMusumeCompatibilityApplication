@@ -75,26 +75,26 @@ table.race_list thead tr {
   font-size: 3rem;
 }
 .aptitude.aptitude-s {
-  color: -webkit-linear-gradient(0deg, white, yellow)
+  color: yellow
 }
 .aptitude.aptitude-a {
-  color: -webkit-linear-gradient(0deg, white, orange)
+  color: orange
 }
 .aptitude.aptitude-b {
-  color: -webkit-linear-gradient(0deg, white, crimson)
+  color: crimson
 }
 .aptitude.aptitude-c {
-  color: -webkit-linear-gradient(0deg, white, darkseagreen)
+  color: darkseagreen
 }
 .aptitude.aptitude-d {
-  color: -webkit-linear-gradient(0deg, white, darkturquoise)
+  color: darkturquoise
 }
 .aptitude.aptitude-e {
-  color: -webkit-linear-gradient(0deg, white, darkviolet)
+  color: darkviolet
 }
 .aptitude.aptitude-f {
-  color: -webkit-linear-gradient(0deg, white, mediumslateblue)
+  color: mediumslateblue
 }
 .aptitude.aptitude-g {
-  color: -webkit-linear-gradient(0deg, white, gray)
+  color: gray
 }
