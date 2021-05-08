@@ -159,7 +159,7 @@ window.umamusu_compatibility = [
         "id": 28,
         "parent_umamusu_id": 1,
         "groundmother_umamusu_id": 24,
-        "value": 19
+        "value": 27
     },
     {
         "id": 29,
@@ -2595,7 +2595,7 @@ window.umamusu_compatibility = [
         "id": 448,
         "parent_umamusu_id": 20,
         "groundmother_umamusu_id": 24,
-        "value": 16
+        "value": 27
     },
     {
         "id": 449,
