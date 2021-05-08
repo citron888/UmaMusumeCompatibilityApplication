@@ -188,7 +188,7 @@ function change_entry_race_sum(datatable){
   entry_race_count = 0;
   ura_flag = true
   if(ura_flag) {
-    entry_race_count += 3
+    entry_race_count += 3 * 2
   }
   $.each(datatable.$("input[type='checkbox'].entry_race:checked"), function(index, value){
     grade = $($(value).closest("tr").find("td")[2]).find("span").text()
@@ -217,7 +217,7 @@ function make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg)
     checked = " checked"
   }
   return [
-    "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span><input type='checkbox' class='entry_race' onchange='change_entry_race_sum(datatable)' value='1' name='" + value["id"] + "'" + checked + "></input>" + value["name"],
+    "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span><input type='radio' class='entry_race' onchange='change_entry_race_sum(datatable)' value='1' name='" + value["date"] + "'" + checked + "></input>" + value["name"],
     value["date"],
     "<span class='hidden'>" + value["grade_id"] + "</span>" + value["grade"],
     value["baba"],
