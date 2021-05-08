@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/i18n/ja.js"></script>
     <script src="umamusu.json.js"></script>
     <script src="umamusu_compatibility.json.js"></script>
+    <script src="race.json.js"></script>
     <script src="umamusu.js"></script>
   </head>
   <body>
@@ -35,13 +36,17 @@
       </div>
       <div class="sum_result">
         合計値: 
-        <span class="sum_compatibility"></span>
+        <span class="sum_compatibility">
+          <span class="all_sum">0</span>
+          (うちレース: <span class="race_compatibility">0</span>)
+        </span>
       </div>
     </div>
     <input type="checkbox" class="set_other">目標以外のおすすめも表示する</input>
     <table class="race_list">
       <thead>
         <tr>
+          <th></th>
           <th>レース日</th>
           <th>グレード</th>
           <th>馬場</th>

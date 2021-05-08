@@ -11,6 +11,15 @@ $(function(){
     $.map(window.umamusu, function(value, index){
       return { id: value["id"], text: value["name"] }
     });
+  // ウマ娘相性作成
+  umamusu_compatibility_hash = {}
+  $.each(window.umamusu_compatibility, function(index, value){
+    if(umamusu_compatibility_hash[value["parent_umamusu_id"]] == null){
+      umamusu_compatibility_hash[value["parent_umamusu_id"]] = {}
+    }
+    umamusu_compatibility_hash[value["parent_umamusu_id"]][value["groudmother_umamusu_id"]] = value["value"]
+  });
+
   $(".umamusu-selecter .select2").select2({
     language: "ja",
     data: umamusu_array
@@ -21,13 +30,41 @@ $(function(){
     lengthChange: false,
     paging: false
   });
+
+  // 親ウマが決定した場合の処理
+  $(".parent select").on("change", function(){
+    calc_compatibility();
+    show_race_list();
+  });
+  // 祖母ウマが決定した場合の処理
+  $(".grandmother select").on("change", function(){
+    calc_compatibility();
+    show_race_list();
+  });
 });
 
-function show_race_list() {
-  parent_element = $("")
-  left_grandmother_element = $("")
-  right_grandmother_element = $("")
-  if(parent_element.val() != null){
-    console.log("test")
+function calc_compatibility(){
+  parent_element = $(".parent select");
+  left_grandmother_element = $(".grandmother-left select");
+  right_grandmother_element = $(".grandmother-right select");
+  if(parent_element.val() != null && left_grandmother_element.val() != null){
+    text = ""
+    if(umamusu_compatibility_hash[Number(parent_element.val())] != null){
+      text = umamusu_compatibility_hash[Number(parent_element.val())][Number(left_grandmother_element.val())]
+    }
+    $(".grandmother-left .compatibility").text(text || "")
   }
+  if(parent_element.val() != null && right_grandmother_element.val() != null){
+    text = ""
+    if(umamusu_compatibility_hash[Number(parent_element.val())] != null){
+      text = umamusu_compatibility_hash[Number(parent_element.val())][Number(right_grandmother_element.val())]
+    }
+    $(".grandmother-right .compatibility").text(text || "")
+  }
+  if($(".grandmother-left .compatibility").val() != null && $(".grandmother-right .compatibility").val() != null){
+    $(".sum_compatibility .all_sum").text(Number($(".grandmother-left .compatibility").text()) + Number($(".grandmother-right .compatibility").text()))
+  }
+}
+function show_race_list() {
+  $(".sum_compatibility .race_compatibility")
 }

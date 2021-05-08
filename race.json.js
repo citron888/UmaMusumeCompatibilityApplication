@@ -1,4 +1,4 @@
-window.umamusu = [
+window.race = [
     { "id":1, "name":"中京ジュニアS", "school_year":0, "month":7, "half":1, "grade":4, "baba":"turf", "distance":"mile" }, 
     { "id":2, "name":"函館ジュニアS", "school_year":0, "month":7, "half":1, "grade":3, "baba":"turf", "distance":"short" }, 
     { "id":3, "name":"コスモス賞", "school_year":0, "month":8, "half":0, "grade":4, "baba":"turf", "distance":"mile" }, 
