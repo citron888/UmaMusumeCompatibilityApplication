@@ -59,9 +59,9 @@ $(function(){
     before_left_value = $(".grandmother-left select").val();
     before_right_value = $(".grandmother-right select").val();
     parent_element = $(".parent select");
-
+    sort_umamusu_array = Array.from(umamusu_array)
     if(umamusu_compatibility_hash[Number(parent_element.val())] != null){
-      umamusu_array.sort(function(a, b){
+      sort_umamusu_array.sort(function(a, b){
         a_num = Number(umamusu_compatibility_hash[Number(parent_element.val())][Number(a["id"])]) || 0
         b_num = Number(umamusu_compatibility_hash[Number(parent_element.val())][Number(b["id"])]) || 0
         return b_num - a_num;
@@ -71,7 +71,7 @@ $(function(){
     $(".grandmother .select2").empty();
     $(".grandmother-left .select2").select2({
       language: "ja",
-      data: $.map(umamusu_array, function(value, index){
+      data: $.map(sort_umamusu_array, function(value, index){
         if(value["id"] == before_left_value){
           return { id: value["id"], text: value["text"], selected: true }
         } else if (before_left_value == null && value["id"] == Number(parent_element.val())) {
@@ -86,7 +86,7 @@ $(function(){
     }
     $(".grandmother-right .select2").select2({
       language: "ja",
-      data: $.map(umamusu_array, function(value, index){
+      data: $.map(sort_umamusu_array, function(value, index){
         if(value["id"] == before_right_value){
           return { id: value["id"], text: value["text"], selected: true }
         } else if (before_right_value == null && value["id"] == Number(parent_element.val())) {
