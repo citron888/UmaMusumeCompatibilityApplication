@@ -8,17 +8,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/i18n/ja.js"></script>
     <script src="umamusu.json.js"></script>
+    <script src="umamusu_compatibility.json.js"></script>
     <script src="umamusu.js"></script>
-    </script>
   </head>
   <body>
     <div class="content">
-      <div class="title">ウマ娘相性表</div>
-      <div class="selecter">
-        <div><select class="select2 parent"></select></div>
-        <div><select class="select2 grandmother grandmother-left"></select></div>
-        <div><select class="select2 grandmother grandmother-right"></select></div>
+      <h1 class="title">ウマ娘相性表</h1>
+      <div class="umamusu-selecter">
+        <div class="parent">
+          <div>
+            親<select class="select2"></select>
+          </div>
+        </div>
+        <div class="grandmother grandmother-left">
+          <div>
+            祖母<select class="select2"></select>
+          </div>
+          <div class="compatibility"></div>
+        </div>
+        <div class="grandmother grandmother-right">
+          <div>
+            祖母<select class="select2"></select>
+          </div>
+          <div class="compatibility"></div>
+        </div>
+      </div>
+      <div class="sum_result">
+        合計値: 
+        <span class="sum_compatibility"></span>
       </div>
     </div>
+    <input type="checkbox" class="set_other">目標以外のおすすめも表示する</input>
+    <table class="race_list">
+      <thead>
+        <tr>
+          <th>レース日</th>
+          <th>グレード</th>
+          <th>馬場</th>
+          <th>距離</th>
+          <th>レース目標人数</th>
+          <th>その他</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
   </body>
 </html>
