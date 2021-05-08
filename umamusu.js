@@ -1,3 +1,6 @@
+// datatable_checker
+datatable = null;
+
 $(function(){
   // datatable日本語化
   $.extend( $.fn.dataTable.defaults, { 
@@ -24,6 +27,7 @@ $(function(){
   $.each(window.race, function(index, value){
     race_hash[value["id"]] =
       {
+        id: value["id"],
         date: window.school_year[value["school_year"]] + value["month"] + "月" + window.half[value["half"]],
         baba: window.baba[value["baba"]],
         name: value["name"],
@@ -31,17 +35,21 @@ $(function(){
         distance: window.distance[value["distance"]]
       }
   });
+  // 出場レース
+  umamusu_race_hash = {}
+  $.each(window.umamusu_race, function(index, value){
+    if(umamusu_race_hash[value["race_id"]] == null){
+      umamusu_race_hash[value["race_id"]] = []
+    }
+    umamusu_race_hash[value["race_id"]].push(value["umamusu_id"])
+  });
+  show_race_list();
 
   $(".umamusu-selecter .select2").select2({
     language: "ja",
     data: umamusu_array
   });
   $('.umamusu-selecter .select2').val(null).trigger('change');
-  // datatable適用
-  $(".race_list").DataTable({
-    lengthChange: false,
-    paging: false
-  });
 
   // 親ウマが決定した場合の処理
   $(".parent select").on("change", function(){
@@ -78,5 +86,65 @@ function calc_compatibility(){
   }
 }
 function show_race_list() {
-  $(".sum_compatibility .race_compatibility")
+  parent_element = $(".parent select");
+  left_grandmother_element = $(".grandmother-left select");
+  right_grandmother_element = $(".grandmother-right select");
+  race_data = []
+  if(datatable) {
+    datatable.state.clear();
+    datatable.destroy();
+    $(".race_list tbody > tr").remove();
+  }
+  // 親・祖母が片方でも選択済の場合は特定のレースだけ開く。まだの場合、全データ出力
+  if(parent_element.val() != null && (left_grandmother_element.val() != null || left_grandmother_element.val() != null)){
+    $.each(race_hash, function(index, value){
+      parent_flg = $.inArray(Number(parent_element.val()), umamusu_race_hash[value["id"]]) != -1
+      left_grand_flg = $.inArray(Number(left_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
+      right_grand_flg = $.inArray(Number(right_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
+      if(parent_flg || left_grand_flg || right_grand_flg){
+        race_data.push(make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg));
+      }
+    });
+  } else {
+    race_data = []
+    $.each(race_hash, function(index, value){
+      race_data.push(make_once_race_data(value));
+    });
+  }
+  // datatable適用
+  datatable =
+    $(".race_list").DataTable({
+      data: race_data,
+      paging: false,
+      pageLength: "10000000"
+    });
+  change_entry_race_sum(datatable)
+}
+
+function change_entry_race_sum(datatable){
+  entry_race_count = datatable.$("input[type='checkbox'].entry_race:checked").length;
+  $(".sum_compatibility .race_compatibility").text(entry_race_count);
+  $(".sum_compatibility .all_sum").text(Number($(".grandmother-left .compatibility").text()) + Number($(".grandmother-right .compatibility").text()) + entry_race_count)
+}
+
+function make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg){
+  race_count = 0
+  if(parent_flg){
+    race_count++;
+  }
+  if(left_grand_flg){
+    race_count++;
+  }
+  if(right_grand_flg){
+    race_count++;
+  }
+  return [
+    "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span><input type='checkbox' class='entry_race' onchange='change_entry_race_sum(datatable)' value='1' name='" + value["id"] + "' checked>" + value["name"] + "</input>",
+    value["date"],
+    value["grade"],
+    value["baba"],
+    value["distance"],
+    race_count,
+    ""
+  ];
 }

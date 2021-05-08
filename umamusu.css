@@ -54,3 +54,7 @@ table.race_list tbody tr:nth-child(odd){
 table.race_list thead tr {
   background-color: chocolate;
 }
+
+.hidden {
+  display: none;
+}
