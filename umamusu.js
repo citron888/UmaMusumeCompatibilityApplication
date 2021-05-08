@@ -20,7 +20,7 @@ $(function(){
     if(umamusu_compatibility_hash[value["parent_umamusu_id"]] == null){
       umamusu_compatibility_hash[value["parent_umamusu_id"]] = {}
     }
-    umamusu_compatibility_hash[value["parent_umamusu_id"]][value["groudmother_umamusu_id"]] = value["value"]
+    umamusu_compatibility_hash[value["parent_umamusu_id"]][value["groundmother_umamusu_id"]] = value["value"]
   });
   // レース一覧
   race_hash = {}
