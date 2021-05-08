@@ -19,6 +19,18 @@ $(function(){
     }
     umamusu_compatibility_hash[value["parent_umamusu_id"]][value["groudmother_umamusu_id"]] = value["value"]
   });
+  // レース一覧
+  race_hash = {}
+  $.each(window.race, function(index, value){
+    race_hash[value["id"]] =
+      {
+        date: window.school_year[value["school_year"]] + value["month"] + "月" + window.half[value["half"]],
+        baba: window.baba[value["baba"]],
+        name: value["name"],
+        grade: window.grade[value["grade"]],
+        distance: window.distance[value["distance"]]
+      }
+  });
 
   $(".umamusu-selecter .select2").select2({
     language: "ja",
