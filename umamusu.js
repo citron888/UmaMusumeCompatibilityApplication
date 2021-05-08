@@ -31,6 +31,7 @@ $(function(){
         date: window.school_year[value["school_year"]] + value["month"] + "月" + window.half[value["half"]],
         baba: window.baba[value["baba"]],
         name: value["name"],
+        grade_id: value["grade"],
         grade: window.grade[value["grade"]],
         distance: window.distance[value["distance"]]
       }
@@ -58,6 +59,10 @@ $(function(){
   });
   // 祖母ウマが決定した場合の処理
   $(".grandmother select").on("change", function(){
+    calc_compatibility();
+    show_race_list();
+  });
+  $(".set_other").on("change", function(){
     calc_compatibility();
     show_race_list();
   });
@@ -103,6 +108,10 @@ function show_race_list() {
       right_grand_flg = $.inArray(Number(right_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
       if(parent_flg || left_grand_flg || right_grand_flg){
         race_data.push(make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg));
+      } else if($(".set_other").prop("checked")) {
+        if(value["grade_id"] == 1 || value["grade_id"] == 2 || value["grade_id"] == 3){
+          race_data.push(make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg));
+        }
       }
     });
   } else {
@@ -122,7 +131,18 @@ function show_race_list() {
 }
 
 function change_entry_race_sum(datatable){
-  entry_race_count = datatable.$("input[type='checkbox'].entry_race:checked").length;
+  entry_race_count = 0;
+  ura_flag = true
+  if(ura_flag) {
+    entry_race_count += 3
+  }
+  $.each(datatable.$("input[type='checkbox'].entry_race:checked"), function(index, value){
+    grade = $($(value).closest("tr").find("td")[2]).find("span").text()
+    // 重賞の場合数える
+    if(grade == 1 || grade == 2 || grade == 3){
+      entry_race_count++; 
+    }
+  });
   $(".sum_compatibility .race_compatibility").text(entry_race_count);
   $(".sum_compatibility .all_sum").text(Number($(".grandmother-left .compatibility").text()) + Number($(".grandmother-right .compatibility").text()) + entry_race_count)
 }
@@ -138,10 +158,14 @@ function make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg)
   if(right_grand_flg){
     race_count++;
   }
+  checked = ""
+  if(parent_flg || left_grand_flg || right_grand_flg) {
+    checked = " checked"
+  }
   return [
-    "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span><input type='checkbox' class='entry_race' onchange='change_entry_race_sum(datatable)' value='1' name='" + value["id"] + "' checked>" + value["name"] + "</input>",
+    "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span><input type='checkbox' class='entry_race' onchange='change_entry_race_sum(datatable)' value='1' name='" + value["id"] + "'" + checked + "></input>" + value["name"],
     value["date"],
-    value["grade"],
+    "<span class='hidden'>" + value["grade_id"] + "</span>" + value["grade"],
     value["baba"],
     value["distance"],
     race_count,
