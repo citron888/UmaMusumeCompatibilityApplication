@@ -14,6 +14,11 @@ $(function(){
     $.map(window.umamusu, function(value, index){
       return { id: value["id"], text: value["name"] }
     });
+  // ウマ娘詳細情報配列作成
+  umamusu_status_hash = {}
+  $.each(window.umamusu, function(index, value){
+    umamusu_status_hash[value["id"]] = value
+  });
   // ウマ娘相性作成
   umamusu_compatibility_hash = {}
   $.each(window.umamusu_compatibility, function(index, value){
@@ -44,8 +49,12 @@ $(function(){
     }
     umamusu_race_hash[value["race_id"]].push(value["umamusu_id"])
   });
+  // ウマ娘ステータス表示
+  show_umamusu_status();
+  // 全レース一覧表示
   show_race_list();
 
+  // select2適用
   $(".umamusu-selecter .select2").select2({
     language: "ja",
     data: umamusu_array
@@ -56,6 +65,7 @@ $(function(){
   $(".parent select").on("change", function(){
     calc_compatibility();
     show_race_list();
+    show_umamusu_status();
     before_left_value = $(".grandmother-left select").val();
     before_right_value = $(".grandmother-right select").val();
     parent_element = $(".parent select");
@@ -104,6 +114,7 @@ $(function(){
   $(".grandmother select").on("change", function(){
     calc_compatibility();
     show_race_list();
+    show_umamusu_status();
   });
   $(".set_other").on("change", function(){
     calc_compatibility();
@@ -214,4 +225,35 @@ function make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg)
     race_count,
     ""
   ];
+}
+
+function show_umamusu_status(){
+  parent_element = $(".parent select");
+  left_grandmother_element = $(".grandmother-left select");
+  right_grandmother_element = $(".grandmother-right select");
+  $(".umamusu_data tbody").empty()
+  if(parent_element.val() != null){
+    data = umamusu_status_hash[parent_element.val()]
+    console.log(data)
+    $(".umamusu_data tbody").append(make_status_tr(data))
+  }
+  if(left_grandmother_element.val() != null){
+    data = umamusu_status_hash[left_grandmother_element.val()]
+    $(".umamusu_data tbody").append(make_status_tr(data))
+  }
+  if(right_grandmother_element.val() != null){
+    data = umamusu_status_hash[right_grandmother_element.val()]
+    $(".umamusu_data tbody").append(make_status_tr(data))
+  }
+}
+function make_status_tr(data){
+  return "<tr>" + 
+  "<td class='aptitude'>" + data["name"] + "</td>" +
+  "<td class='aptitude aptitude-" + data["baba_aptitude"]["turf"].toLowerCase() + "'>" + data["baba_aptitude"]["turf"] + "</td>" +
+  "<td class='aptitude aptitude-" + data["baba_aptitude"]["dirt"].toLowerCase() + "'>" + data["baba_aptitude"]["dirt"] + "</td>" +
+  "<td class='aptitude aptitude-" + data["distance_aptitude"]["short"].toLowerCase() + "'>" + data["distance_aptitude"]["short"] + "</td>" +
+  "<td class='aptitude aptitude-" + data["distance_aptitude"]["mile"].toLowerCase() + "'>" + data["distance_aptitude"]["mile"] + "</td>" +
+  "<td class='aptitude aptitude-" + data["distance_aptitude"]["middle"].toLowerCase() + "'>" + data["distance_aptitude"]["middle"] + "</td>" +
+  "<td class='aptitude aptitude-" + data["distance_aptitude"]["long"].toLowerCase() + "'>" + data["distance_aptitude"]["long"] + "</td>" +
+  "</tr>"
 }

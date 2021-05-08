@@ -70,3 +70,31 @@ table.race_list thead tr {
 .hidden {
   display: none;
 }
+
+.aptitude {
+  font-size: 3rem;
+}
+.aptitude.aptitude-s {
+  color: -webkit-linear-gradient(0deg, white, yellow)
+}
+.aptitude.aptitude-a {
+  color: -webkit-linear-gradient(0deg, white, orange)
+}
+.aptitude.aptitude-b {
+  color: -webkit-linear-gradient(0deg, white, crimson)
+}
+.aptitude.aptitude-c {
+  color: -webkit-linear-gradient(0deg, white, darkseagreen)
+}
+.aptitude.aptitude-d {
+  color: -webkit-linear-gradient(0deg, white, darkturquoise)
+}
+.aptitude.aptitude-e {
+  color: -webkit-linear-gradient(0deg, white, darkviolet)
+}
+.aptitude.aptitude-f {
+  color: -webkit-linear-gradient(0deg, white, mediumslateblue)
+}
+.aptitude.aptitude-g {
+  color: -webkit-linear-gradient(0deg, white, gray)
+}
