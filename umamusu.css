@@ -98,3 +98,11 @@ table.race_list thead tr {
 .aptitude.aptitude-g {
   color: gray
 }
+
+.compatibility_reference {
+  width: 200px;
+}
+
+.compatibility_area {
+  display: flex;
+}
