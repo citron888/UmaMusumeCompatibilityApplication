@@ -69,7 +69,7 @@ window.race = [
     { "id":68, "name":"ヒヤシンスS", "school_year":1, "month":2, "half":1, "grade":4, "baba":"dirt", "distance":"mile" },
     { "id":69, "name":"マーガレットS", "school_year":1, "month":2, "half":1, "grade":4, "baba":"turf", "distance":"short" },
     { "id":70, "name":"弥生賞", "school_year":1, "month":3, "half":0, "grade":2, "baba":"turf", "distance":"middle" },
-    { "id":71, "name":"フュリーズレビュー", "school_year":1, "month":3, "half":0, "grade":2, "baba":"turf", "distance":"short" },
+    { "id":71, "name":"フィリーズレビュー", "school_year":1, "month":3, "half":0, "grade":2, "baba":"turf", "distance":"short" },
     { "id":72, "name":"チューリップ賞", "school_year":1, "month":3, "half":0, "grade":2, "baba":"turf", "distance":"mile" },
     { "id":73, "name":"アネモネS", "school_year":1, "month":3, "half":0, "grade":4, "baba":"turf", "distance":"mile" },
     { "id":74, "name":"昇竜S", "school_year":1, "month":3, "half":0, "grade":4, "baba":"dirt", "distance":"short" },
