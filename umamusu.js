@@ -14,6 +14,7 @@ $(function(){
     $.map(window.umamusu, function(value, index){
       return { id: value["id"], text: value["name"] }
     });
+  umamusu_array.unshift({ id: 0, text: "　", selcted: true })
   // ウマ娘詳細情報配列作成
   umamusu_status_hash = {}
   $.each(window.umamusu, function(index, value){
@@ -72,9 +73,13 @@ $(function(){
     sort_umamusu_array = Array.from(umamusu_array)
     if(umamusu_compatibility_hash[Number(parent_element.val())] != null){
       sort_umamusu_array.sort(function(a, b){
-        a_num = Number(umamusu_compatibility_hash[Number(parent_element.val())][Number(a["id"])]) || 0
-        b_num = Number(umamusu_compatibility_hash[Number(parent_element.val())][Number(b["id"])]) || 0
-        return b_num - a_num;
+        if(Number(b["id"] == 0)){
+          return 1;
+        } else {
+          a_num = Number(umamusu_compatibility_hash[Number(parent_element.val())][Number(a["id"])]) || 0
+          b_num = Number(umamusu_compatibility_hash[Number(parent_element.val())][Number(b["id"])]) || 0
+          return b_num - a_num;
+        }
       })
     }
 
@@ -83,8 +88,6 @@ $(function(){
       language: "ja",
       data: $.map(sort_umamusu_array, function(value, index){
         if(value["id"] == before_left_value){
-          return { id: value["id"], text: value["text"], selected: true }
-        } else if (before_left_value == null && value["id"] == Number(parent_element.val())) {
           return { id: value["id"], text: value["text"], selected: true }
         } else {
           return value;
@@ -98,8 +101,6 @@ $(function(){
       language: "ja",
       data: $.map(sort_umamusu_array, function(value, index){
         if(value["id"] == before_right_value){
-          return { id: value["id"], text: value["text"], selected: true }
-        } else if (before_right_value == null && value["id"] == Number(parent_element.val())) {
           return { id: value["id"], text: value["text"], selected: true }
         } else {
           return value;
@@ -179,8 +180,19 @@ function show_race_list() {
     $(".race_list").DataTable({
       data: race_data,
       paging: false,
-      pageLength: "10000000"
+      pageLength: "10000000",
+      order: [4, "asc"],
+
     });
+  datatable.on("draw", function(){
+    $(".checkbox_button").off("change.clear_group_check")
+    $(".checkbox_button").on("change.clear_group_check", function(){
+      group = $(this).attr('name');
+      $(".checkbox_button").filter(function() {
+        return $(this).attr('name') == group;
+      }).not(this).removeAttr('checked');
+    })
+  })
   change_entry_race_sum(datatable)
 }
 
@@ -190,11 +202,19 @@ function change_entry_race_sum(datatable){
   if(ura_flag) {
     entry_race_count += 3 * 2
   }
-  $.each(datatable.$("input[type='checkbox'].entry_race:checked"), function(index, value){
-    grade = $($(value).closest("tr").find("td")[2]).find("span").text()
+  $.each(datatable.$("tr"), function(index, value){
+    grade = $($(value).find("td")[5]).find("span").text()
     // 重賞の場合数える
     if(grade == 1 || grade == 2 || grade == 3){
-      entry_race_count++; 
+      check_parent = $($(value).find("td")[0]).find("input[type=checkbox]")
+      check_grand_left = $($(value).find("td")[1]).find("input[type=checkbox]")
+      check_grand_right = $($(value).find("td")[2]).find("input[type=checkbox]")
+      if(check_parent.prop("checked") && check_grand_left.prop("checked")){
+        entry_race_count++;
+      }
+      if(check_parent.prop("checked") && check_grand_right.prop("checked")){
+        entry_race_count++;
+      }
     }
   });
   $(".sum_compatibility .race_compatibility").text(entry_race_count);
@@ -202,28 +222,27 @@ function change_entry_race_sum(datatable){
 }
 
 function make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg){
-  race_count = 0
+  parent_checked = ""
+  left_grand_checked = ""
+  right_grand_checked = ""
   if(parent_flg){
-    race_count++;
+    parent_checked = " checked"
   }
   if(left_grand_flg){
-    race_count++;
+    left_grand_checked = " checked"
   }
   if(right_grand_flg){
-    race_count++;
-  }
-  checked = ""
-  if(parent_flg || left_grand_flg || right_grand_flg) {
-    checked = " checked"
+    right_grand_checked = " checked"
   }
   return [
-    "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span><input type='radio' class='entry_race' onchange='change_entry_race_sum(datatable)' value='1' name='" + value["date"] + "'" + checked + "></input>" + value["name"],
-    value["date"],
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-parent'" + parent_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-left_grand'" + left_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-right_grand'" + right_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    value["name"],
+    "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span>" + value["date"],
     "<span class='hidden'>" + value["grade_id"] + "</span>" + value["grade"],
     value["baba"],
-    value["distance"],
-    race_count,
-    ""
+    value["distance"]
   ];
 }
 
@@ -234,7 +253,6 @@ function show_umamusu_status(){
   $(".umamusu_data tbody").empty()
   if(parent_element.val() != null){
     data = umamusu_status_hash[parent_element.val()]
-    console.log(data)
     $(".umamusu_data tbody").append(make_status_tr(data))
   }
   if(left_grandmother_element.val() != null){
