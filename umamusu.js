@@ -94,9 +94,6 @@ $(function(){
         }
       }),
     });
-    if(before_left_value == null){
-      $(".grandmother-left .select2-selection__rendered").text("");
-    }
     $(".grandmother-right .select2").select2({
       language: "ja",
       data: $.map(sort_umamusu_array, function(value, index){
@@ -107,9 +104,6 @@ $(function(){
         }
       }),
     });
-    if(before_right_value == null){
-      $(".grandmother-right .select2-selection__rendered").text("");
-    }
   });
   // 祖母ウマが決定した場合の処理
   $(".grandmother select").on("change", function(){
@@ -251,15 +245,15 @@ function show_umamusu_status(){
   left_grandmother_element = $(".grandmother-left select");
   right_grandmother_element = $(".grandmother-right select");
   $(".umamusu_data tbody").empty()
-  if(parent_element.val() != null){
+  if(parent_element.val() != null && parent_element.val() != 0){
     data = umamusu_status_hash[parent_element.val()]
     $(".umamusu_data tbody").append(make_status_tr(data))
   }
-  if(left_grandmother_element.val() != null){
+  if(left_grandmother_element.val() != null && left_grandmother_element.val() != 0){
     data = umamusu_status_hash[left_grandmother_element.val()]
     $(".umamusu_data tbody").append(make_status_tr(data))
   }
-  if(right_grandmother_element.val() != null){
+  if(right_grandmother_element.val() != null && right_grandmother_element.val() != 0){
     data = umamusu_status_hash[right_grandmother_element.val()]
     $(".umamusu_data tbody").append(make_status_tr(data))
   }
