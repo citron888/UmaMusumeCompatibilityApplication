@@ -97,7 +97,7 @@
 /* 大デバイス（デスクトップ, 1200px 未満） */
 @media (min-width: 992px) {
  .title {
-   font-size: 7.0rem;
+   font-size: 5.0rem;
  }
 }
 /* 中デバイス（タブレット, 992px 未満） */
