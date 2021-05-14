@@ -1,8 +1,123 @@
+/***** Plugin処理の上書き *****/
+.select2-container--default .select2-results>.select2-results__options {
+  max-height: 50vh !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: unset;
+}
+/* 大デバイス（デスクトップ, 1200px 未満） */
+@media (min-width: 992px) {
+  body * {
+    font-size: 2.0rem;
+  }
+  #DataTables_Table_0_wrapper .entry_race {
+    width: 2rem;
+  }
+  #DataTables_Table_0_filter input {
+    width: 30rem;
+  }
+ }
+ /* 中デバイス（タブレット, 992px 未満） */
+ @media (max-width: 991.98px) {
+  body * {
+    font-size: 4rem;
+  }
+  #DataTables_Table_0_wrapper .entry_race {
+    width: 6rem;
+    height: 6rem;
+  }
+  .select2-container .select2-selection--single {
+    height: 60px;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 60px;
+  }
+  .umamusu-selecter .parent {
+    height: 240px !important;
+  }
+  .grandmother {
+    height: 120px !important;
+  }
+  #DataTables_Table_0_filter input {
+    width: 30rem;
+    height: 5rem;
+  }
+ }
+ /* 小デバイス（横向きモバイル, 768px 未満） */
+ @media (max-width: 767.98px) {
+  body * {
+    font-size: 2rem;
+  }
+  #DataTables_Table_0_wrapper .entry_race {
+    width: 20rem;
+    height: 5rem;
+  }
+  .select2-container .select2-selection--single {
+    height: 60px;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 60px;
+  }
+  .umamusu-selecter .parent {
+    height: 240px !important;
+  }
+  .grandmother {
+    height: 120px !important;
+  }
+ }
+ /* 極小デバイス（縦向きモバイル, 576px 未満） */
+ @media (max-width: 575.98px) {
+  body * {
+    font-size: 1rem;
+  }
+  #DataTables_Table_0_wrapper .entry_race {
+    width: 20rem;
+    height: 5rem;
+  }
+  .select2-container .select2-selection--single {
+    height: 60px;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 60px;
+  }
+  .umamusu-selecter .parent {
+    height: 60px;
+  }
+ }
+
+
+ /***** 当HTML専用 *****/
 .title {
   color: yellow;
   background: -webkit-linear-gradient(0deg, #ACB6E5, #86FDE8);
   margin: 0;
 }
+
+/* 大デバイス（デスクトップ, 1200px 未満） */
+@media (min-width: 992px) {
+ .title {
+   font-size: 7.0rem;
+ }
+}
+/* 中デバイス（タブレット, 992px 未満） */
+@media (max-width: 991.98px) {
+ .title {
+   font-size: 4.0rem;
+ }
+}
+/* 小デバイス（横向きモバイル, 768px 未満） */
+@media (max-width: 767.98px) {
+ .title {
+   font-size: 2.0rem;
+ }
+}
+/* 極小デバイス（縦向きモバイル, 576px 未満） */
+@media (max-width: 575.98px) {
+ .title {
+   font-size: 1.0rem;
+ }
+}
+
 .sum_result {
   color: deeppink;
   font-size: 3rem;

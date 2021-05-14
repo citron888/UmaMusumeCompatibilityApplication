@@ -1,14 +1,18 @@
 <html>
   <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>ウマ娘相性表</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
-    <link rel="stylesheet" href="umamusu.css"/> 
+    <link rel="stylesheet" href="modal.css"/>
     <link rel="stylesheet" href="checkbox.css"/>
+    <link rel="stylesheet" href="umamusu.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/i18n/ja.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="table/umamusu.json.js"></script>
     <script src="table/umamusu_compatibility.json.js"></script>
     <script src="table/umamusu_race.json.js"></script>
@@ -18,9 +22,31 @@
     <script src="table/distance.json.js"></script>
     <script src="table/baba.json.js"></script>
     <script src="table/half.json.js"></script>
+    <script src="modal.js"></script>
     <script src="umamusu.js"></script>
   </head>
   <body>
+    <div id="modal-wrapper">
+      <div class="modal-backgraund"></div>
+      <div class="modal-content">
+        <div class="close-wrapper">
+          <table class="schedule_table">
+            <thead>
+              <tr>
+                <th>T</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <a class="modal-close" href=""><span>閉じる</span></a>
+        </div>
+      </div>
+    </div>
     <div class="content">
       <h1 class="title">ウマ娘相性表</h1>
       <div class="umamusu-selecter">
@@ -85,6 +111,7 @@
     </div>
     <input type="checkbox" class="set_other" id="set_other"></input>
     <label for="set_other">目標以外の重賞も表示する</label>
+    <!-- <div><button class="modal-open" data-target="modal-wrapper">カレンダーを表示</button></div> -->
     <table class="race_list">
       <thead>
         <tr>

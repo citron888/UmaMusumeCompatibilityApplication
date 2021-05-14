@@ -67,6 +67,8 @@ $(function(){
     calc_compatibility();
     show_race_list();
     show_umamusu_status();
+    change_schedule_umamusu($(this), "");
+    make_schedule_table();
     before_left_value = $(".grandmother-left select").val();
     before_right_value = $(".grandmother-right select").val();
     parent_element = $(".parent select");
@@ -110,6 +112,8 @@ $(function(){
     calc_compatibility();
     show_race_list();
     show_umamusu_status();
+    change_schedule_umamusu($(this), "");
+    make_schedule_table();
   });
   $(".set_other").on("change", function(){
     calc_compatibility();
@@ -268,4 +272,26 @@ function make_status_tr(data){
   "<td class='aptitude aptitude-" + data["distance_aptitude"]["middle"].toLowerCase() + "'>" + data["distance_aptitude"]["middle"] + "</td>" +
   "<td class='aptitude aptitude-" + data["distance_aptitude"]["long"].toLowerCase() + "'>" + data["distance_aptitude"]["long"] + "</td>" +
   "</tr>"
+}
+
+function change_schedule_umamusu(element, target){
+  id = element.val()
+  name = element.find("option:selected").text()
+  $(target).html(name)
+}
+
+function make_schedule_table(){
+  tbody = $(".schedule_table tbody")
+  $.each(window.school_year, function(index_school, value){
+    for(index_month = 1; index_month <= 12; index_month++){
+      $.each(window.half, function(index, value){
+        tbody.append("<tr>" +
+          "<td>" + (index_school + index_month + index) + "</td>" +
+          "<td></td>" +
+          "<td></td>" +
+          "</tr>")
+      });
+      console.log("test")
+    }
+  });
 }
