@@ -185,4 +185,10 @@ window.umamusu = [
         "baba_aptitude": {"turf":"E","dirt":"A"},
         "distance_aptitude":{"short":"B","mile":"A","middle":"A","long":"E"}
     },
+    {
+        "id": 32,
+        "name": "ナリタブライアン",
+        "baba_aptitude": {"turf":"A","dirt":"G"},
+        "distance_aptitude":{"short":"F","mile":"B","middle":"A","long":"A"}
+    },
 ]
