@@ -262,7 +262,7 @@ window.race = [
     { "id":261, "name":"福島ウマ娘S", "school_year":2, "month":4, "half":1, "grade":3, "baba":"turf", "distance":"mile" },
     { "id":262, "name":"オアシスS", "school_year":2, "month":4, "half":1, "grade":4, "baba":"dirt", "distance":"mile" },
     { "id":263, "name":"天王山S", "school_year":2, "month":4, "half":1, "grade":4, "baba":"dirt", "distance":"short" },
-    { "id":264, "name":"ヴィクトリアマイス", "school_year":2, "month":5, "half":0, "grade":1, "baba":"turf", "distance":"mile" },
+    { "id":264, "name":"ヴィクトリアマイル", "school_year":2, "month":5, "half":0, "grade":1, "baba":"turf", "distance":"mile" },
     { "id":265, "name":"京王杯スプリングカップ", "school_year":2, "month":5, "half":0, "grade":2, "baba":"turf", "distance":"short" },
     { "id":266, "name":"新潟大賞典", "school_year":2, "month":5, "half":0, "grade":3, "baba":"turf", "distance":"middle" },
     { "id":267, "name":"谷川岳S", "school_year":2, "month":5, "half":0, "grade":4, "baba":"turf", "distance":"mile" },
