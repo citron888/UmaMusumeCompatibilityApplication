@@ -1140,5 +1140,56 @@ window.umamusu_race = [
         "race_id" : 373, 
         "note" : "", 
     },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 45, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 81, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 96, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 167, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 202, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 246, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 259, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 337, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 354, 
+        "note" : "", 
+    },
+    {
+        "umamusu_id" : 32,	
+        "race_id" : 372, 
+        "note" : "", 
+    },
+
 
 ]
