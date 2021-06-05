@@ -170,8 +170,8 @@ function show_race_list(clear_array = []) {
     all_clear = $.inArray("all", clear_array) != -1
     if(!all_clear){
       parent_clear = $.inArray("parent", clear_array) != -1
-      grandmother_left_clear = $.inArray("grandmother_left", clear_array) != -1
-      grandmother_right_clear = $.inArray("grandmother_right", clear_array) != -1
+      grandmother_left_clear = $.inArray("grandmother-left", clear_array) != -1
+      grandmother_right_clear = $.inArray("grandmother-right", clear_array) != -1
       if(!parent_clear){
         select_before_parent = $.map(datatable.$(".parent_checkbox:checked"), function(obj){return Number($(obj).val())})
       }
