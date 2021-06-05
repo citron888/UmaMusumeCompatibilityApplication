@@ -154,16 +154,22 @@ function show_race_list() {
     $(".race_list tbody > tr").remove();
   }
   // 親・祖母が片方でも選択済の場合は特定のレースだけ開く。まだの場合、全データ出力
-  if(parent_element.val() != null && (left_grandmother_element.val() != null || left_grandmother_element.val() != null)){
+  if(parent_element.val() != null || (left_grandmother_element.val() != null || left_grandmother_element.val() != null)){
     $.each(race_hash, function(index, value){
-      parent_flg = $.inArray(Number(parent_element.val()), umamusu_race_hash[value["id"]]) != -1
-      left_grand_flg = $.inArray(Number(left_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
-      right_grand_flg = $.inArray(Number(right_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
-      if(parent_flg || left_grand_flg || right_grand_flg){
-        race_data.push(make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg));
+      parent_goal_flg = $.inArray(Number(parent_element.val()), umamusu_race_hash[value["id"]]) != -1
+      left_grand_goal_flg = $.inArray(Number(left_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
+      right_grand_goal_flg = $.inArray(Number(right_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
+      if(parent_goal_flg || left_grand_goal_flg || right_grand_goal_flg){
+        parent_goal = parent_goal_flg ? "goal" : false
+        left_grand_goal = left_grand_goal_flg ? "goal" : false
+        right_grand_goal = right_grand_goal_flg ? "goal" : false
+        race_data.push(make_once_race_data(value, parent_goal, left_grand_goal, right_grand_goal));
       } else if($(".set_other").prop("checked")) {
         if(value["grade_id"] == 1 || value["grade_id"] == 2 || value["grade_id"] == 3){
-          race_data.push(make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg));
+          parent_goal = parent_goal_flg ? "goal" : false
+          left_grand_goal = left_grand_goal_flg ? "goal" : false
+          right_grand_goal = right_grand_goal_flg ? "goal" : false
+          race_data.push(make_once_race_data(value, parent_goal, left_grand_goal, right_grand_goal));
         }
       }
     });
@@ -190,6 +196,7 @@ function show_race_list() {
         return $(this).attr('name') == group;
       }).not(this).removeAttr('checked');
     })
+    $(".target_race").closest("td").addClass("target_race_wrapper")
   })
   change_entry_race_sum(datatable)
 }
@@ -223,19 +230,31 @@ function make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg)
   parent_checked = ""
   left_grand_checked = ""
   right_grand_checked = ""
+  parent_goal = ""
+  left_grand_goal = ""
+  right_grand_goal = ""
   if(parent_flg){
     parent_checked = " checked"
+    if(parent_flg == "goal"){
+      parent_goal = " target_race'"
+    }
   }
   if(left_grand_flg){
     left_grand_checked = " checked"
+    if(left_grand_flg == "goal"){
+      left_grand_goal = " target_race'"
+    }
   }
   if(right_grand_flg){
     right_grand_checked = " checked"
+    if(right_grand_flg == "goal"){
+      right_grand_goal = " target_race"
+    }
   }
   return [
-    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-parent'" + parent_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
-    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-left_grand'" + left_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
-    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-right_grand'" + right_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race" + parent_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-parent'" + parent_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race" + left_grand_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-left_grand'" + left_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race" + right_grand_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-right_grand'" + right_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
     value["name"],
     "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span>" + value["date"],
     "<span class='hidden'>" + value["grade_id"] + "</span>" + value["grade"],
@@ -291,7 +310,6 @@ function make_schedule_table(){
           "<td></td>" +
           "</tr>")
       });
-      console.log("test")
     }
   });
 }

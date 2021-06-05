@@ -47,86 +47,88 @@
         </div>
       </div>
     </div>
-    <div class="content">
-      <h1 class="title">ウマ娘相性表</h1>
-      <div class="umamusu-selecter">
-        <div class="parent">
-          <div>
-            親<select class="select2"></select>
+    <div class="content" class="col-sm-12">
+      <div class="row">
+        <h1 class="title">ウマ娘相性表</h1>
+        <div class="umamusu-selecter">
+          <div class="parent">
+            <div>
+              親<select class="select2"></select>
+            </div>
+          </div>
+          <div class="grandmother grandmother-left">
+            <div>
+              祖母1<select class="select2"></select>
+            </div>
+            <div class="compatibility"></div>
+          </div>
+          <div class="grandmother grandmother-right">
+            <div>
+              祖母2<select class="select2"></select>
+            </div>
+            <div class="compatibility"></div>
           </div>
         </div>
-        <div class="grandmother grandmother-left">
-          <div>
-            祖母1<select class="select2"></select>
-          </div>
-          <div class="compatibility"></div>
-        </div>
-        <div class="grandmother grandmother-right">
-          <div>
-            祖母2<select class="select2"></select>
-          </div>
-          <div class="compatibility"></div>
-        </div>
-      </div>
-      <div class="umamusu_data">
-        <table>
-          <thead>
-            <tr>
-              <th rowspan="2">ウマ娘名</th>
-              <th colspan="2">馬場適正</th>
-              <th colspan="4">距離適正</th>
-            </tr>
-            <tr>
-              <th>芝</th>
-              <th>ダート</th>
-              <th>短距離</th>
-              <th>マイル</th>
-              <th>中距離</th>
-              <th>長距離</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="compatibility_area">
-        <div>
-          <table class="compatibility_reference">
-            <tr><td>△</td><td>~50</td></tr>
-            <tr><td>○</td><td>51~150</td></tr>
-            <tr><td>◎</td><td>151~</td></tr>
+        <div class="umamusu_data">
+          <table>
+            <thead>
+              <tr>
+                <th rowspan="2">ウマ娘名</th>
+                <th colspan="2">馬場適正</th>
+                <th colspan="4">距離適正</th>
+              </tr>
+              <tr>
+                <th>芝</th>
+                <th>ダート</th>
+                <th>短距離</th>
+                <th>マイル</th>
+                <th>中距離</th>
+                <th>長距離</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+            </tbody>
           </table>
         </div>
-        <div class="sum_result">
-          合計値: 
-          <span class="sum_compatibility">
-            <span class="all_sum">0</span>
-            (うちレース: <span class="race_compatibility">0</span>)
-          </span>
+        <div class="compatibility_area">
+          <div>
+            <table class="compatibility_reference">
+              <tr><td>△</td><td>~50</td></tr>
+              <tr><td>○</td><td>51~150</td></tr>
+              <tr><td>◎</td><td>151~</td></tr>
+            </table>
+          </div>
+          <div class="sum_result">
+            合計値: 
+            <span class="sum_compatibility">
+              <span class="all_sum">0</span>
+              (うちレース: <span class="race_compatibility">0</span>)
+            </span>
+          </div>
         </div>
       </div>
+      <input type="checkbox" class="set_other" id="set_other"></input>
+      <label for="set_other">目標以外の重賞も表示する</label>
+      <!-- <div><button class="modal-open" data-target="modal-wrapper">カレンダーを表示</button></div> -->
+      <table class="race_list">
+        <thead>
+          <tr>
+            <th> 親 </th>
+            <th>祖母1</th>
+            <th>祖母2</th>
+            <th>レース名</th>
+            <th>レース日</th>
+            <th>グレード</th>
+            <th>馬場</th>
+            <th>距離</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
     </div>
-    <input type="checkbox" class="set_other" id="set_other"></input>
-    <label for="set_other">目標以外の重賞も表示する</label>
-    <!-- <div><button class="modal-open" data-target="modal-wrapper">カレンダーを表示</button></div> -->
-    <table class="race_list">
-      <thead>
-        <tr>
-          <th> 親 </th>
-          <th>祖母1</th>
-          <th>祖母2</th>
-          <th>レース名</th>
-          <th>レース日</th>
-          <th>グレード</th>
-          <th>馬場</th>
-          <th>距離</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
   </body>
 </html>
