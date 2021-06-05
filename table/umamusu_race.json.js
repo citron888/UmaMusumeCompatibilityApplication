@@ -552,6 +552,11 @@ window.umamusu_race = [
     },
     {
         "umamusu_id" : 15,	
+        "race_id" : 96, 
+        "note" : "選択肢でオークスへ変更可能", 
+    },
+    {
+        "umamusu_id" : 15,	
         "race_id" : 166, 
         "note" : "", 
     },

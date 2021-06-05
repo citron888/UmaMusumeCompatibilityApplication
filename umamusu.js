@@ -65,7 +65,7 @@ $(function(){
   // 親ウマが決定した場合の処理
   $(".parent select").on("change", function(){
     calc_compatibility();
-    show_race_list();
+    show_race_list(["parent"]);
     show_umamusu_status();
     change_schedule_umamusu($(this), "");
     make_schedule_table();
@@ -108,9 +108,17 @@ $(function(){
     });
   });
   // 祖母ウマが決定した場合の処理
-  $(".grandmother select").on("change", function(){
+  $(".grandmother-left select").on("change", function(){
     calc_compatibility();
-    show_race_list();
+    show_race_list(["grandmother-left"]);
+    show_umamusu_status();
+    change_schedule_umamusu($(this), "");
+    make_schedule_table();
+  });
+  // 祖母ウマが決定した場合の処理
+  $(".grandmother-right select").on("change", function(){
+    calc_compatibility();
+    show_race_list(["grandmother-right"]);
     show_umamusu_status();
     change_schedule_umamusu($(this), "");
     make_schedule_table();
@@ -118,6 +126,9 @@ $(function(){
   $(".set_other").on("change", function(){
     calc_compatibility();
     show_race_list();
+  });
+  $(".clear_target").on("click", function(){
+    show_race_list(["all"]);
   });
 });
 
@@ -143,12 +154,34 @@ function calc_compatibility(){
     $(".sum_compatibility .all_sum").text(Number($(".grandmother-left .compatibility").text()) + Number($(".grandmother-right .compatibility").text()))
   }
 }
-function show_race_list() {
+// レースの一覧テーブルを表示する。
+//
+// clear[Boolean] テーブルをクリアするかのフラグ
+//
+function show_race_list(clear_array = []) {
   parent_element = $(".parent select");
   left_grandmother_element = $(".grandmother-left select");
   right_grandmother_element = $(".grandmother-right select");
+  select_before_parent = []
+  select_before_grandmother_left = []
+  select_before_grandmother_right = []
   race_data = []
   if(datatable) {
+    all_clear = $.inArray("all", clear_array) != -1
+    if(!all_clear){
+      parent_clear = $.inArray("parent", clear_array) != -1
+      grandmother_left_clear = $.inArray("grandmother_left", clear_array) != -1
+      grandmother_right_clear = $.inArray("grandmother_right", clear_array) != -1
+      if(!parent_clear){
+        select_before_parent = $.map(datatable.$(".parent_checkbox:checked"), function(obj){return Number($(obj).val())})
+      }
+      if(!grandmother_left_clear){
+        select_before_grandmother_left = $.map(datatable.$(".grandmother-left_checkbox:checked"), function(obj){return Number($(obj).val())})
+      }
+      if(!grandmother_right_clear){
+        select_before_grandmother_right = $.map(datatable.$(".grandmother-right_checkbox:checked"), function(obj){return Number($(obj).val())})
+      }
+    }
     datatable.state.clear();
     datatable.destroy();
     $(".race_list tbody > tr").remove();
@@ -159,16 +192,19 @@ function show_race_list() {
       parent_goal_flg = $.inArray(Number(parent_element.val()), umamusu_race_hash[value["id"]]) != -1
       left_grand_goal_flg = $.inArray(Number(left_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
       right_grand_goal_flg = $.inArray(Number(right_grandmother_element.val()), umamusu_race_hash[value["id"]]) != -1
-      if(parent_goal_flg || left_grand_goal_flg || right_grand_goal_flg){
-        parent_goal = parent_goal_flg ? "goal" : false
-        left_grand_goal = left_grand_goal_flg ? "goal" : false
-        right_grand_goal = right_grand_goal_flg ? "goal" : false
+      parent_goal = $.inArray(Number(value["id"]), select_before_parent) != -1
+      left_grand_goal = $.inArray(Number(value["id"]), select_before_grandmother_left) != -1
+      right_grand_goal = $.inArray(Number(value["id"]), select_before_grandmother_right) != -1
+      if(parent_goal_flg || left_grand_goal_flg || right_grand_goal_flg || parent_goal || left_grand_goal || right_grand_goal){
+        parent_goal = parent_goal_flg ? "goal" : parent_goal
+        left_grand_goal = left_grand_goal_flg ? "goal" : left_grand_goal
+        right_grand_goal = right_grand_goal_flg ? "goal" : right_grand_goal
         race_data.push(make_once_race_data(value, parent_goal, left_grand_goal, right_grand_goal));
       } else if($(".set_other").prop("checked")) {
         if(value["grade_id"] == 1 || value["grade_id"] == 2 || value["grade_id"] == 3){
-          parent_goal = parent_goal_flg ? "goal" : false
-          left_grand_goal = left_grand_goal_flg ? "goal" : false
-          right_grand_goal = right_grand_goal_flg ? "goal" : false
+          parent_goal = parent_goal_flg ? "goal" : parent_goal
+          left_grand_goal = left_grand_goal_flg ? "goal" : left_grand_goal
+          right_grand_goal = right_grand_goal_flg ? "goal" : right_grand_goal
           race_data.push(make_once_race_data(value, parent_goal, left_grand_goal, right_grand_goal));
         }
       }
@@ -199,7 +235,8 @@ function show_race_list() {
     $(".target_race").closest("td").addClass("target_race_wrapper")
     $(".select_all_parent_race").off("click.select_all_parent_race")
     $(".select_all_parent_race").on("click.select_all_parent_race", function(){
-      $(".race_list").find(".parent_checkbox").prop("checked", true)
+      $(".race_list").find(".parent_checkbox").prop("checked", true);
+      change_entry_race_sum(datatable);
     });
   });
   change_entry_race_sum(datatable)
