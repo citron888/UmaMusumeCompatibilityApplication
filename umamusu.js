@@ -7,7 +7,7 @@ $(function(){
     language: {
         url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
     } 
-  }); 
+  });
 
   // ウマ娘リスト作成
   umamusu_array =
@@ -197,7 +197,11 @@ function show_race_list() {
       }).not(this).removeAttr('checked');
     })
     $(".target_race").closest("td").addClass("target_race_wrapper")
-  })
+    $(".select_all_parent_race").off("click.select_all_parent_race")
+    $(".select_all_parent_race").on("click.select_all_parent_race", function(){
+      $(".race_list").find(".parent_checkbox").prop("checked", true)
+    });
+  });
   change_entry_race_sum(datatable)
 }
 
@@ -252,9 +256,9 @@ function make_once_race_data(value, parent_flg, left_grand_flg, right_grand_flg)
     }
   }
   return [
-    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race" + parent_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-parent'" + parent_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
-    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race" + left_grand_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-left_grand'" + left_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
-    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race" + right_grand_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-right_grand'" + right_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race parent_checkbox" + parent_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-parent'" + parent_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race grandmother-left_checkbox" + left_grand_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-left_grand'" + left_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
+    "<label class='checkbox_label'><input type='checkbox' class='checkbox_button entry_race grandmother-right_checkbox" + right_grand_goal + "' onchange='change_entry_race_sum(datatable)' value='" + value["id"] + "' name='" + value["date"] + "-right_grand'" + right_grand_checked + "></input><span class='dummry_checkbox_inputer'></span><span class='checkbox_text'></span></label>",
     value["name"],
     "<span class='hidden'>" + ("000" + value["id"]).slice( -3 ) + "</span>" + value["date"],
     "<span class='hidden'>" + value["grade_id"] + "</span>" + value["grade"],

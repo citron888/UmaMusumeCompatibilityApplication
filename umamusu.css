@@ -161,6 +161,9 @@
     font-size: 4rem;
   }
 }
+.select_all_parent_race {
+  background-color: antiquewhite;
+}
 
 .umamusu-selecter .parent {
   float: left;
