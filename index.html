@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>ウマ娘相性表</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
+    <link rel="stylesheet" href="modal.css"/>
+    <link rel="stylesheet" href="checkbox.css"/>
+    <link rel="stylesheet" href="umamusu.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/i18n/ja.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="table/umamusu.json.js"></script>
+    <script src="table/umamusu_compatibility.json.js"></script>
+    <script src="table/umamusu_race.json.js"></script>
+    <script src="table/race.json.js"></script>
+    <script src="table/school_year.json.js"></script>
+    <script src="table/grade.json.js"></script>
+    <script src="table/distance.json.js"></script>
+    <script src="table/baba.json.js"></script>
+    <script src="table/half.json.js"></script>
+    <script src="modal.js"></script>
+    <script src="umamusu.js"></script>
+  </head>
+  <body>
+    <div id="modal-wrapper">
+      <div class="modal-backgraund"></div>
+      <div class="modal-content">
+        <div class="close-wrapper">
+          <table class="schedule_table">
+            <thead>
+              <tr>
+                <th>T</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <a class="modal-close" href=""><span>閉じる</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="content" class="col-sm-12">
+      <div class="row">
+        <h1 class="title">ウマ娘相性表</h1>
+        <div class="umamusu-selecter">
+          <div class="parent">
+            <div>
+              親<select class="select2"></select>
+            </div>
+          </div>
+          <div class="grandmother grandmother-left">
+            <div>
+              祖母1<select class="select2"></select>
+            </div>
+            <div class="compatibility"></div>
+          </div>
+          <div class="grandmother grandmother-right">
+            <div>
+              祖母2<select class="select2"></select>
+            </div>
+            <div class="compatibility"></div>
+          </div>
+        </div>
+        <div class="umamusu_data">
+          <table>
+            <thead>
+              <tr>
+                <th rowspan="2">ウマ娘名</th>
+                <th colspan="2">馬場適正</th>
+                <th colspan="4">距離適正</th>
+              </tr>
+              <tr>
+                <th>芝</th>
+                <th>ダート</th>
+                <th>短距離</th>
+                <th>マイル</th>
+                <th>中距離</th>
+                <th>長距離</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="compatibility_area">
+          <div>
+            <table class="compatibility_reference">
+              <tr><td>△</td><td>~50</td></tr>
+              <tr><td>○</td><td>51~150</td></tr>
+              <tr><td>◎</td><td>151~</td></tr>
+            </table>
+          </div>
+          <div class="sum_result">
+            合計値: 
+            <span class="sum_compatibility">
+              <span class="all_sum">0</span>
+              (うちレース: <span class="race_compatibility">0</span>)
+            </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <input type="checkbox" class="set_other" id="set_other"></input>
+        <label for="set_other">目標以外の重賞も表示する</label>
+      </div>
+      <div>
+        <button class="select_all_parent_race">親レースを全選択（重賞全表示時非推奨）</button>
+        <button class="clear_target">目標レースだけにリセット</button>
+      </div>
+      <!-- <div><button class="modal-open" data-target="modal-wrapper">カレンダーを表示</button></div> -->
+      <table class="race_list">
+        <thead>
+          <tr>
+            <th> 親 </th>
+            <th>祖母1</th>
+            <th>祖母2</th>
+            <th>レース名</th>
+            <th>レース日</th>
+            <th>グレード</th>
+            <th>馬場</th>
+            <th>距離</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

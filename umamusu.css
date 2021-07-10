@@ -1,0 +1,259 @@
+/***** Plugin処理の上書き *****/
+.select2-container--default .select2-results>.select2-results__options {
+  max-height: 50vh !important;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: unset;
+}
+/* 大デバイス（デスクトップ, 1200px 未満） */
+@media (min-width: 992px) {
+  body * {
+    font-size: 2.0rem;
+  }
+  .set_other {
+    width: 2rem;
+    height: 2rem;    
+  }
+  #DataTables_Table_0_wrapper .entry_race {
+    width: 2rem;
+    height: 2rem;
+  }
+  #DataTables_Table_0_filter input {
+    width: 30rem;
+  }
+ }
+ /* 中デバイス（タブレット, 992px 未満） */
+ @media (max-width: 991.98px) {
+  body * {
+    font-size: 4rem;
+  }
+  .set_other {
+    width: 6rem;
+    height: 6rem;
+  }
+  #DataTables_Table_0_wrapper .entry_race {
+    width: 6rem;
+    height: 6rem;
+  }
+  .select2-container .select2-selection--single {
+    height: 60px;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 60px;
+  }
+  .umamusu-selecter .parent {
+    height: 240px !important;
+  }
+  .grandmother {
+    height: 120px !important;
+  }
+  #DataTables_Table_0_filter input {
+    width: 30rem;
+    height: 5rem;
+  }
+ }
+ /* 小デバイス（横向きモバイル, 768px 未満） */
+ @media (max-width: 767.98px) {
+  body * {
+    font-size: 2rem;
+  }
+  .set_other {
+    width: 6rem;
+    height: 6rem;
+  }
+  #DataTables_Table_0_wrapper .entry_race {
+    width: 6rem;
+    height: 6rem;
+  }
+  .select2-container .select2-selection--single {
+    height: 60px;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 60px;
+  }
+  .umamusu-selecter .parent {
+    height: 240px !important;
+  }
+  .grandmother {
+    height: 120px !important;
+  }
+ }
+ /* 極小デバイス（縦向きモバイル, 576px 未満） */
+ @media (max-width: 575.98px) {
+  body * {
+    font-size: 1rem;
+  }
+  .set_other {
+    width: 6rem;
+    height: 6rem;
+  }
+  #DataTables_Table_0_wrapper .entry_race {
+    width: 6rem;
+    height: 6rem;
+  }
+  .select2-container .select2-selection--single {
+    height: 60px;
+  }
+  .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 60px;
+  }
+  .umamusu-selecter .parent {
+    height: 60px;
+  }
+ }
+
+
+ /***** 当HTML専用 *****/
+.title {
+  color: yellow;
+  background: -webkit-linear-gradient(0deg, #ACB6E5, #86FDE8);
+  margin: 0;
+}
+
+/* 大デバイス（デスクトップ, 1200px 未満） */
+@media (min-width: 992px) {
+ .title {
+   font-size: 5.0rem;
+ }
+}
+/* 中デバイス（タブレット, 992px 未満） */
+@media (max-width: 991.98px) {
+ .title {
+   font-size: 4.0rem;
+ }
+}
+/* 小デバイス（横向きモバイル, 768px 未満） */
+@media (max-width: 767.98px) {
+ .title {
+   font-size: 2.0rem;
+ }
+}
+/* 極小デバイス（縦向きモバイル, 576px 未満） */
+@media (max-width: 575.98px) {
+ .title {
+   font-size: 1.0rem;
+ }
+}
+
+.target_race_wrapper {
+  background-color: gold;
+}
+
+.sum_result {
+  color: deeppink;
+  font-size: 2rem;
+}
+
+.compatibility {
+  color: darkred;
+  font-size: 2rem;
+  padding-left: 10px;
+}
+ /* 中デバイス（タブレット, 992px 未満） */
+ @media (max-width: 991.98px) {
+  .compatibility {
+    font-size: 4rem;
+  }
+ }
+/* 中デバイス（タブレット, 992px 未満） */
+@media (max-width: 991.98px) {
+  .sum_result {
+    font-size: 4rem;
+  }
+}
+.select_all_parent_race {
+  background-color: antiquewhite;
+}
+
+.umamusu-selecter .parent {
+  float: left;
+  width: 50%;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+}
+.umamusu-selecter .grandmother {
+  float: right;
+  width: 50%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+}
+.umamusu-selecter {
+  list-style-type: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table th,table td{
+  padding: 10px 0;
+  text-align: center;
+}
+
+table tbody tr:nth-child(odd){
+  background-color: #eee
+}
+
+.umamusu_data table thead tr {
+  background-color: darkolivegreen;  
+}
+table.race_list thead tr {
+  background-color: chocolate;
+}
+.umamusu_data table {
+  border: 1px solid black;
+}
+.umamusu_data table th {
+  border: 1px solid black;
+}
+.umamusu_data table td {
+  border: 1px solid black;
+}
+
+.hidden {
+  display: none;
+}
+
+.aptitude {
+  font-size: 2rem;
+}
+.aptitude.aptitude-s {
+  color: yellow
+}
+.aptitude.aptitude-a {
+  color: orange
+}
+.aptitude.aptitude-b {
+  color: crimson
+}
+.aptitude.aptitude-c {
+  color: darkseagreen
+}
+.aptitude.aptitude-d {
+  color: darkturquoise
+}
+.aptitude.aptitude-e {
+  color: darkviolet
+}
+.aptitude.aptitude-f {
+  color: mediumslateblue
+}
+.aptitude.aptitude-g {
+  color: gray
+}
+
+.compatibility_reference {
+  width: 200px;
+}
+
+.compatibility_area {
+  display: flex;
+}
