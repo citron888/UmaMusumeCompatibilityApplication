@@ -191,4 +191,16 @@ window.umamusu = [
         "baba_aptitude": {"turf":"A","dirt":"G"},
         "distance_aptitude":{"short":"F","mile":"B","middle":"A","long":"A"}
     },
+    {
+        "id": 33,
+        "name": "セイウンスカイ",
+        "baba_aptitude": {"turf":"A","dirt":"G"},
+        "distance_aptitude":{"short":"G","mile":"C","middle":"A","long":"A"}
+    },
+    {
+        "id": 34,
+        "name": "ヒシアマゾン",
+        "baba_aptitude": {"turf":"A","dirt":"E"},
+        "distance_aptitude":{"short":"D","mile":"A","middle":"A","long":"B"}
+    },
 ]
